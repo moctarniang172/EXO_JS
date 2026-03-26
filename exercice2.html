@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://cdn.tailwindcss.com"></script>
+    <title>systeme de crud avec la barre de filitrage</title>
+</head>
+<body class="bg-[#eff1f2]">
+  <div class="grid grid-cols-1">
+      <!-- barre de recherche pour le filtrage -->
+    <div class="mt-8 text-center ">
+        <input type="text" id="filtrage" value="" placeholder="chercher un etudiant" class="w-[50%] h-[5vh] rounded-full">
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+
+    <!-- FORMULAIRE -->
+    <form id="mon-formulaire" class="mt-6">
+      <div class="bg-white rounded-xl p-6 shadow">
+
+        <h1 class="text-2xl font-bold text-center mb-6">Ajouter un Étudiant</h1>
+
+        <!-- Champ Nom -->
+        <div class="flex flex-col gap-1 mb-4">
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Nom</p>
+          <input type="text" id="nom" placeholder="votre nom"
+                 class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Champ Prénom -->
+        <div class="flex flex-col gap-1 mb-4">
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Prénom</p>
+          <input type="text" id="prenom" placeholder="votre prénom"
+                 class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Champ Adresse -->
+        <div class="flex flex-col gap-1 mb-6">
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Adresse</p>
+          <input type="text" id="adresse" placeholder="votre adresse"
+                 class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Bouton -->
+        <input type="submit" value="Valider" id="btn-2"
+               class="bg-blue-500 hover:bg-blue-600 w-full h-[5vh] rounded-lg
+                      text-white font-bold cursor-pointer transition duration-200">
+      </div>
+    </form>
+
+    <!-- TABLEAU -->
+    <div class="bg-white mt-6 rounded-xl shadow overflow-x-auto">
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="bg-gray-50">
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">id unique de chaque etudiant</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Nom</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Prénom</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Adresse</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Action</th>
+          </tr>
+        </thead>
+        <tbody id="liste"></tbody>
+      </table>
+    </div>
+
+  </div>
+  </div>
+    
+</body>
+<script src="exo2.js"></script>
+<script src="pagination.js"></script>
+</html>
