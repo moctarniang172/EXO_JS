@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Système CRUD en JS</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
 </head>
-<body class="bg-[#eff1f2]">
-  <div class="flex bg-green-700 text-center gap-8">
-            <a href="exercice1.html">exercice 1</a>
-            <a href="index.html">exercice 2</a>
-        </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+<body>    <script src="https://cdn.tailwindcss.com"></script>
+     <nav class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center shadow">
+        <h1 class="text-xl font-bold">Mes Exercices</h1>
+        <ul class="flex gap-6">
+            <li>
+                <a href="EX.HTML" class="hover:text-sky-400 transition">Exercice 1</a>
+            </li>
+            <li>
+                <a href="exercice2.html" class="hover:text-sky-400 transition">Exercice 2</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- le formulaire et la tableau -->
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
 
     <!-- FORMULAIRE -->
-    <form id="mon-formulaire" class="mt-6">
+    <form id="formulaire" class="mt-6">
       <div class="bg-white rounded-xl p-6 shadow">
 
         <h1 class="text-2xl font-bold text-center mb-6">Ajouter un Étudiant</h1>
@@ -37,10 +43,10 @@
                         focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
-        <!-- Champ Adresse -->
+        <!-- Champ age -->
         <div class="flex flex-col gap-1 mb-6">
           <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Age</p>
-          <input type="text" id="adresse" placeholder="votre adresse"
+          <input type="number" id="age" placeholder="votre age"
                  class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
                         focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
@@ -69,7 +75,7 @@
     </div>
 
   </div>
-
-  <script src="exo.js"></script>
+    
 </body>
+<script src="EX.JS"></script>
 </html>

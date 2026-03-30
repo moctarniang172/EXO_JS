@@ -3,136 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Étudiants</title>
+    <title>Mes Exercices CSS</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-<body class="bg-gray-100 min-h-screen p-6">
- 
-    <div class="max-w-5xl mx-auto">
-        <div class="flex bg-green-700 text-center gap-8">
-            <a href="exercice1.html">exercice 1</a>
-            <a href="index.html">exercice 2</a>
-        </div>
- 
-        <!-- HEADER -->
-        <div class="flex items-center justify-between mb-6">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-800">
-                    Liste des <span class="text-blue-500">Étudiants</span>
-                </h1>
-                <p class="text-gray-400 text-sm mt-1">
-                     gérer et visualiser les étudiants inscrits
-                </p>
-            </div>
- 
-            <!-- Bouton → aller sur ajout.html -->
+<body class="bg-gray-100">
+
+    <!-- NAVBAR -->
+    <nav class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center shadow">
+        <h1 class="text-xl font-bold">Mes Exercices</h1>
+        <ul class="flex gap-6">
+            <li>
+                <a href="EX.HTML" class="hover:text-sky-400 transition">Exercice 1</a>
+            </li>
+            <li>
+                <a href="exercice2.html" class="hover:text-sky-400 transition">Exercice 2</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="flex flex-col items-center justify-center text-center py-24 px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+            Bienvenue 
+        </h2>
+
+        <p class="text-gray-600 mb-8 max-w-md">
+            Voici mes exercices en CSS avec Tailwind. Clique sur un exercice pour le voir.
+        </p>
+
+        <div class="flex gap-4">
+            <a href="EX.HTML"
+               class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
+                Voir Exercice 1
+            </a>
+
             <a href="exercice2.html"
-               class="bg-blue-500 hover:bg-blue-600 text-white font-bold
-                      px-5 py-3 rounded-xl transition duration-200 flex items-center gap-2">
-                <i class="fa-solid fa-plus"></i>
-                Ajouter
+               class="bg-green-500 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600 transition">
+                Voir Exercice 2
             </a>
         </div>
- 
-        <!-- BARRE DE RECHERCHE + COMPTEUR -->
-        <div class="bg-white rounded-2xl shadow p-4 mb-4 flex items-center gap-4">
-            <div class="flex-1 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
-                <input type="text" id="filtrage"
-                       placeholder="Rechercher par nom..."
-                       class="w-full bg-gray-50 border border-gray-200 rounded-xl
-                              pl-10 pr-4 py-2 focus:outline-none focus:ring-2
-                              focus:ring-blue-400 transition"/>
-            </div>
-            <p class="text-sm text-gray-400">
-                Total : <span id="compteur" class="text-blue-500 font-bold">0</span>
-            </p>
-        </div>
- 
-        <!-- TABLEAU -->
-        <div class="bg-white rounded-2xl shadow overflow-hidden mb-4">
-            <table class="table-auto w-full">
-                <thead>
-                    <tr class="bg-gray-50 border-b border-gray-200">
-                        <th class="px-4 py-3 text-left text-xs text-gray-400 uppercase">#</th>
-                        <th class="px-4 py-3 text-left text-xs text-gray-400 uppercase">Nom</th>
-                        <th class="px-4 py-3 text-left text-xs text-gray-400 uppercase">Prénom</th>
-                        <th class="px-4 py-3 text-left text-xs text-gray-400 uppercase">Age</th>
-                        <th class="px-4 py-3 text-left text-xs text-gray-400 uppercase">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="liste"></tbody>
-            </table>
-        </div>
- 
-        <!-- PAGINATION -->
-        <div class="flex items-center justify-between">
-            <button id="precedent"
-                    class="bg-white border border-gray-200 text-gray-600 font-bold
-                           px-5 py-2 rounded-xl shadow hover:bg-gray-50 transition
-                           disabled:opacity-40 disabled:cursor-not-allowed">
-                < Précédent
-            </button>
- 
-            <span id="info-page" class="text-sm text-gray-400">
-                Page 1 / 1
-            </span>
- 
-            <button id="suivant"
-                    class="bg-blue-500 text-white font-bold px-5 py-2 rounded-xl
-                           shadow hover:bg-blue-600 transition
-                           disabled:opacity-40 disabled:cursor-not-allowed">
-                Suivant >
-            </button>
-        </div>
- 
-    </div>
- 
-    <!-- MODAL MODIFICATION -->
-    <div id="formulaireModification" class="fixed inset-0 bg-black bg-opacity-50 hidden
-                           flex items-center justify-center z-50">
-        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">
-                 Modifier l'étudiant
-            </h2>
- 
-            <div class="flex flex-col gap-4">
-                <div class="flex flex-col gap-1">
-                    <label class="text-sm font-bold text-gray-500 uppercase">Nom</label>
-                    <input type="text" id="nom"
-                           class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3
-                                  focus:outline-none focus:ring-2 focus:ring-blue-400"/>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <label class="text-sm font-bold text-gray-500 uppercase">Prénom</label>
-                    <input type="text" id="prenom"
-                           class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3
-                                  focus:outline-none focus:ring-2 focus:ring-blue-400"/>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <label class="text-sm font-bold text-gray-500 uppercase">Adresse</label>
-                    <input type="text" id="adresse"
-                           class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3
-                                  focus:outline-none focus:ring-2 focus:ring-blue-400"/>
-                </div>
-            </div>
- 
-            <div class="flex gap-3 mt-6">
-                <button onclick="fermerModification()"
-                        class="flex-1 border border-gray-200 text-gray-500 font-bold
-                               py-3 rounded-xl hover:bg-gray-50 transition">
-                    Annuler
-                </button>
-                <button onclick="enregistrerModif()"
-                        class="flex-1 bg-blue-500 text-white font-bold
-                               py-3 rounded-xl hover:bg-blue-600 transition">
-                    Enregistrer
-                </button>
-            </div>
-        </div>
-    </div>
-    </body>
-    <script src="pagination.js"></script>
-    </html>
- 
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-gray-500 text-sm py-6">
+        © 2026 - Mes exercices Tailwind CSS
+    </footer>
+
+</body>
+</html>
