@@ -192,9 +192,7 @@ function afficherPARnombre(){
     document.getElementById("nombrepage").innerHTML = pageNavigueActuel+ "/" + totalPage;
 
     
-    // Désactiver les boutons
-    document.getElementById("precedent").disabled = pageNavigueActuel === 1;
-    document.getElementById("suivant").disabled = pageNavigueActuel === totalPage;
+    
 };
 
  // bouton precedent
