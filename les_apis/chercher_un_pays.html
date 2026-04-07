@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chercher un pays</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div class="py-4 flex justify-center w-full h-[40vh] bg-green-700 gap-4">
+        <input type="text" value="" placeholder="chercher un pays" id="pays-chercher" class="w-full h-[4vh] rounded-lg" >
+        <button class="w-[15%] h-[4vh] rounded-md bg-red-500" onclick="valider()" id="valider">chercher un pays</button>
+
+    </div>
+
+    <div class="flex justify-center" id="affiche"></div>
+    <script src="api.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Produit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#eff1f2]">
+
+  <form id="formulaire" class="mt-6">
+    <div class="bg-white rounded-xl p-6 shadow">
+
+      <h1 class="text-2xl font-bold text-center mb-6">Ajouter un Produit</h1>
+
+      <!-- Nom -->
+      <div class="flex flex-col gap-1 mb-4">
+        <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Nom du produit</p>
+        <input type="text" id="nom" placeholder="nom du produit"
+               class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                      focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+      </div>
+
+      <!-- Image -->
+      <div class="flex flex-col gap-1 mb-4">
+        <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Image</p>
+        <input type="file" id="image" accept="image/*"
+               class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3"/>
+        <img id="apercu" src="" style="display:none; width:100px; border-radius:8px;"/>
+      </div>
+
+      <!-- Catégorie -->
+      <div class="flex flex-col gap-1 mb-4">
+        <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Catégorie</p>
+        <select id="categorie"
+                class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                       focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <option value="electronique">Électronique</option>
+          <option value="vetement">Vêtement</option>
+          <option value="alimentation">Alimentation</option>
+        </select>
+      </div>
+
+      <!-- Prix-->
+      <div class="flex flex-col gap-1 mb-4">
+        <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Prix</p>
+        <input type="number" id="prix" placeholder="prix en FCFA"
+               class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                      focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+      </div>
+
+      <!-- Stock-->
+      <div class="flex flex-col gap-1 mb-4">
+        <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Stock</p>
+        <input type="number" id="stock" placeholder="quantité en stock"
+               class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                      focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+      </div>
+
+      <!-- Bouton -->
+      <input type="submit" value="Valider" id="btn-2"
+             class="bg-blue-500 hover:bg-blue-600 w-full h-[5vh] rounded-lg
+                    text-white font-bold cursor-pointer transition duration-200"/>
+    </div>
+  </form>
+
+  <script src="index.js"></script>
+</body>
+</html>

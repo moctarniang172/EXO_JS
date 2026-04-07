@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chercher un pays</title>
+         <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <form action="" id="formulaire">
+        <div class="my-16 flex justify-center items-center gap-4 bg-green-700 w-[100%] h-[20vh]">
+        <input type="text" value="" id="pays-chercher" placeholder="chercher un pays" class="my-8 rounded-lg w-[60%] h-[4vh]">
+        <button onclick="chercher()" class="bg-red-700 w-[15%] rounded-md h-[4vh] text-white hover:bg-[#c97a7a] hover:text-black">chercher</button>
+    </div>
+    <div id="liste" class="grid grid-cols-1 md:grid-cols-4 place-items-center gap-4">
+ 
+    </div>
+    </form>
+    <script>
+        let pays = document.getElementById("pays-chercher").value.toLoweCASE()
+        let url = `https://restcountries.com/v3.1/all?fields=name,capital,languages,flags,region,population`;
+        fetch(url)
+        .then(function(resp){
+            if(!resp.ok){
+                return 
+            }
+            return resp.json()
+        })
+        .then(function(data){
+
+
+         })
+         
+    </script>
+    
+</body>
+</html>

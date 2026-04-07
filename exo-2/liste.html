@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div>
+        <div class="flex gap-4">
+            <button onclick="filtre('electronique')">electronique</button>
+            <button onclick="filtre('vetement')">Vetement</button>
+            <button onclick="filtre('tous')">Tout</button>
+        </div>
+
+       <div class="flex justify-between">
+        <div class="mt-[10%] pl-[5%] cursor-pointer justify-items-center fixe" onclick="cliqueBouton()"><i class="fa-solid fa-angle-left"></i></div>
+        <div>
+          <h1 class="text-center">mes produits </h1>
+    <div id="carte" class=" m-8 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 place-content-center bg-green-100 gap-4">
+        <div  class="flex"></div>
+    </div>
+       </div>
+
+       <div class="mt-[10%] pr-[5%] cursor-pointer justify-items-center fixe" id="suivant"><i class="fa-solid fa-angle-right"></i></div>
+
+
+
+       </div>
+    </div>
+      <div id="page" class="flex justify-center"></div>
+    <script>
+    // code de deuxieme page qui est liste les produits 
+    let tab = [];
+    let pageActuel = 1;
+    let parpage = 4;
+recharger();
+
+function recharger(){
+    tab = JSON.parse(localStorage.getItem("tableProduit"))||[]
+   paginationParpage()
+}
+
+// creer une fonction pour afficher mes produits;/
+
+function affichage(produit){
+    let produitAfficher =  produit.map(function(articles, index){
+        let indexArticle = (pageActuel -1) * parpage + index
+        return`<div class="w-full h-[auto] rounded-md bg-white">
+           <img src="${articles.image}" alt="produit" class="w-full h-40 object-cover mb-2">
+           <p class="text-center">${articles.nom}</p>
+           <p class="text-center">${articles.categorie}</p>
+           <p class="text-center">${articles.stock}</p>
+           <p class="text-center">${articles.prix}</p>   
+           <button class="bg-red-700 w-[30%] ml-[35%] text-center text-white rounded-md">voir plus </button>
+         </div>`
+    });
+    document.getElementById("carte").innerHTML = produitAfficher.join("")
+};
+
+                                // AFFICHE PAR CATEGORIE    
+let tabFiltre = [];
+function filtre(categorie){ 
+    pageActuel = 1;
+    if(categorie === "tous"){
+        resultat = tab;
+      
+    }else if(categorie === "electronique"){
+        resultat = tab.filter(function(filtre){
+            return filtre.categorie === categorie
+        })
+    }else if(categorie === "vetement"){
+        resultat = tab.filter(function(filtre){
+            return filtre.categorie === categorie;
+        })
+       
+    }
+     affichage(resultat)
+    
+}
+
+                        // la pagination 
+    
+    // creer  une fonction pour la pagination 
+
+    function paginationParpage(){
+        let debut = (pageActuel - 1)* parpage;
+        let fin = pageActuel * parpage;
+        let data = tab.slice(debut,fin)
+
+        affichage(data);
+
+        let totalPage = Math.ceil(tab.length / parpage)|| 1;
+        document.getElementById("page").innerHTML = "page"+ pageActuel+ "/"+ totalPage
+    }
+
+    // creer la fonction pour le bouton suivant et precedent
+
+    function cliqueBouton(){
+        let totalPage = Math.ceil(tab.length / parpage);
+        if(pageActuel >1){
+            pageActuel --;
+            paginationParpage();
+        }
+
+    }
+
+    // le bouton precedent, on va utiliser les addevenlitener
+
+    let suivant = document.getElementById("suivant");
+    suivant.addEventListener("click", function(){
+     let totalPage = Math.ceil(tab.length / parpage);
+
+     if(pageActuel < totalPage){
+        pageActuel ++;
+        paginationParpage()
+     }
+    })
+
+    
+
+                
+</script>
+    
+</body>
+
+</html>

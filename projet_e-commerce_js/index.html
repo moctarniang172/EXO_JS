@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSénégal </title>
+
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Le panier est caché par défaut — JavaScript l'ouvrira plus tard */
+        #panier-sidebar {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <!-- =====================================================
+         NAVBAR — barre de navigation en haut
+         - fixed  = reste collée en haut même en scrollant
+         - z-50   = passe par-dessus tous les autres éléments
+         - shadow = ombre sous la navbar
+    ====================================================== -->
+    <nav class="fixed top-0 left-0 w-full bg-[#16668e] text-white z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <!-- Logo / Nom de la boutique -->
+            <h1 class="text-2xl font-bold tracking-wide">
+                 ShopSénégal
+            </h1>
+
+            <!-- Liens de navigation (centre) -->
+            <ul class="hidden md:flex gap-8 text-sm font-medium">
+                <!-- hidden md:flex = caché sur mobile, visible à partir de md -->
+                <li><a href="#" class="hover:text-yellow-300 transition">Accueil</a></li>
+                <li><a href="#produits" class="hover:text-yellow-300 transition">Produits</a></li>
+                <li><a href="#" class="hover:text-yellow-300 transition">À propos</a></li>
+                <li><a href="#" class="hover:text-yellow-300 transition">Contact</a></li>
+            </ul>
+
+            <!-- Icônes à droite : panier + admin -->
+            <div class="flex items-center gap-6">
+
+                <!-- Bouton panier avec badge compteur -->
+                <button class="relative cursor-pointer" id="btn-ouvrir-panier">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <!-- Le badge rouge avec le nombre d'articles -->
+                    <!-- compteur-panier = l'id qu'on utilisera en JS pour mettre à jour le chiffre -->
+                    <span id="compteur-panier" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                        0
+                    </span>
+                </button>
+
+                <!-- Lien Admin discret -->
+                <a href="#admin"
+                   class="text-xs bg-white text-[#16668e] px-3 py-1 rounded-full font-semibold hover:bg-yellow-300 transition">
+                    Admin
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- =====================================================
+         HERO / BANNIÈRE — la grande image d'accueil
+         - mt-16 = marge en haut pour compenser la navbar fixe
+         - Pas d'image réelle encore — on met un fond coloré
+    ====================================================== -->
+    <div class="mt-16 bg-gradient-to-r from-[#16668e] to-[#adc8d6]
+                h-64 flex items-center justify-center text-white text-center px-6">
+        <div>
+            <h2 class="text-4xl font-bold mb-3">Bienvenue sur ShopSénégal</h2>
+            <p class="text-lg opacity-90">Les meilleurs produits, livrés chez vous</p>
+            <button class="mt-4 bg-yellow-400 text-black font-bold px-6 py-2 rounded-full hover:bg-yellow-300 transition">
+                Voir les produits
+            </button>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         SECTION PRODUITS — la grille des cartes produits
+         - id="liste-produits" = JavaScript injectera les vraies
+           cartes ici quand on connectera Firebase (Jour 2)
+         - Pour l'instant on met 4 cartes en dur (statiques)
+    ====================================================== -->
+    <section id="produits" class="max-w-7xl mx-auto px-6 py-10">
+
+        <!-- Titre de la section -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Nos Produits</h2>
+
+        <!-- La grille : 1 colonne sur mobile, 2 sur tablette, 4 sur desktop -->
+        <div id="liste-produits"
+             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        </div>
+    </section>
+
+    <!-- =====================================================
+         PANIER LATÉRAL (sidebar)
+         - fixed          = position fixe sur l'écran
+         - right-0 top-0  = collé à droite, en haut
+         - h-full         = toute la hauteur de l'écran
+         - w-80           = largeur fixe (320px)
+         - z-50           = par-dessus tout le reste
+         - translate-x-full = caché à droite (hors écran)
+           → JavaScript retirera cette classe pour l'ouvrir
+    ====================================================== -->
+    <div id="panier-sidebar"
+         class="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50
+                transform translate-x-full flex flex-col">
+
+        <!-- En-tête du panier -->
+        <div class="flex justify-between items-center p-5 bg-[#16668e] text-white">
+            <h2 class="text-lg font-bold">
+                <i class="fa-solid fa-cart-shopping mr-2"></i> Mon Panier
+            </h2>
+            <!-- Bouton fermer — JavaScript écoutera ce bouton -->
+            <button id="btn-fermer-panier" class="text-2xl hover:text-yellow-300 transition">
+                ✕
+            </button>
+        </div>
+
+        <!-- Zone liste des articles
+             - flex-1      = prend tout l'espace disponible
+             - overflow-y-auto = scroll si trop d'articles
+             JavaScript injectera les articles ici -->
+        <div id="liste-panier" class="flex-1 overflow-y-auto p-5">
+            <!-- Message affiché quand le panier est vide -->
+            <p class="text-gray-400 text-center mt-10">
+                <i class="fa-solid fa-basket-shopping text-4xl mb-3 block"></i>
+                Ton panier est vide
+            </p>
+        </div>
+
+        <!-- Pied du panier : total + bouton commander -->
+        <div class="p-5 border-t border-gray-200">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-bold text-gray-700">Total :</span>
+                <!-- total-panier = JavaScript mettra à jour ce chiffre -->
+                <span id="total-panier" class="font-bold text-xl text-[#16668e]">
+                    
+                </span>
+            </div>
+            <button class="w-full bg-[#16668e] text-white py-3 rounded-xl
+                           font-bold hover:bg-[#0f4a6a] transition">
+                <i class="fa-solid fa-credit-card mr-2"></i> Commander
+            </button>
+        </div>
+    </div>
+
+    <!-- Fond sombre derrière le panier quand il est ouvert -->
+    <!-- JavaScript ajoutera/retirera la classe "hidden" -->
+    <div id="overlay-panier"
+         class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden">
+    </div>
+
+    <!-- =====================================================
+         SECTION ADMIN — formulaire pour gérer les produits
+         - Cette section sera cachée plus tard derrière une auth
+         - Pour l'instant elle est visible en bas de page
+    ====================================================== -->
+    <section id="admin" class="max-w-2xl mx-auto px-6 py-10">
+
+        <div class="bg-white rounded-xl shadow-md p-6">
+
+            <!-- Titre de la section admin -->
+            <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-gear text-[#16668e]"></i>
+                Panel Admin — Ajouter un produit
+            </h2>
+
+            <!-- Formulaire d'ajout de produit
+                 id="formulaire-admin" = JavaScript écoutera ce formulaire -->
+            <form id="formulaire-admin" class="flex flex-col gap-4">
+
+                <!-- Champ Nom du produit -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Nom du produit
+                    </label>
+                    <!-- id="nom-produit" = JavaScript lira cette valeur -->
+                    <input type="text"
+                           id="nom-produit"
+                           placeholder="ex: T-shirt Dakar"
+                           class="w-full border border-gray-300 rounded-lg px-4 py-2
+                                  focus:outline-none focus:border-[#16668e] transition"/>
+                </div>
+
+                <!-- Champ Prix -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Prix (FCFA)
+                    </label>
+                    <input type="number"
+                           id="prix-produit"
+                           placeholder="ex: 5000"
+                           class="w-full border border-gray-300 rounded-lg px-4 py-2
+                                  focus:outline-none focus:border-[#16668e] transition"/>
+                </div>
+
+                <!-- Champ Description -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Description
+                    </label>
+                    <textarea id="description-produit"
+                              placeholder="Décris le produit..."
+                              rows="3"
+                              class="w-full border border-gray-300 rounded-lg px-4 py-2
+                                     focus:outline-none focus:border-[#16668e] transition">
+                    </textarea>
+                </div>
+
+                <!-- Champ URL Image -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        URL de l'image
+                    </label>
+                    <input type="file"
+                           id="image-produit"
+                           placeholder="https://..."
+                           class="w-full border border-gray-300 rounded-lg px-4 py-2
+                                  focus:outline-none focus:border-[#16668e] transition"/>
+                                  <img id="apercu" src="" alt="iamge">
+                </div>
+
+                <!-- Bouton soumettre -->
+                <button type="submit" id="btn" class="bg-[#16668e] text-white font-bold py-3 rounded-xl hover:bg-[#0f4a6a] transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Ajouter le produit
+                </button>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="bg-[#16668e] text-white text-center py-6 mt-10">
+        <p class="text-sm opacity-80">© 2025 ShopSénégal — Tous droits réservés</p>
+    </footer>
+
+    <!-- Fichier JavaScript — vide pour l'instant, on le remplira Jour 2 -->
+    <script type="module" src="index.js"></script>
+
+</body>
+</html>

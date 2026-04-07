@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>    <script src="https://cdn.tailwindcss.com"></script>
+     <nav class="bg-slate-800 text-white px-6 py-4 flex justify-between items-center shadow">
+        <h1 class="text-xl font-bold">Mes Exercices</h1>
+        <ul class="flex gap-6">
+            <li>
+                <a href="EX.HTML" class="hover:text-sky-400 transition">Exercice 1</a>
+            </li>
+            <li>
+                <a href="exercice2.html" class="hover:text-sky-400 transition">Exercice 2</a>
+            </li>
+            <li>
+                <a href="index.html" class="hover:text-sky-400 transition">firbase</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- le formulaire et la tableau -->
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+
+    <!-- FORMULAIRE -->
+    <form id="formulaire" class="mt-6">
+      <div class="bg-white rounded-xl p-6 shadow">
+
+        <h1 class="text-2xl font-bold text-center mb-6">Ajouter un Étudiant</h1>
+
+        <!-- Champ Nom -->
+        <div class="flex flex-col gap-1 mb-4">
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Nom</p>
+          <input type="text" id="nom" placeholder="votre nom"
+                 class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Champ Prénom -->
+        <div class="flex flex-col gap-1 mb-4">
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Prénom</p>
+          <input type="text" id="prenom" placeholder="votre prénom"
+                 class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Champ age -->
+        <div class="flex flex-col gap-1 mb-6">
+          <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Age</p>
+          <input type="number" id="age" placeholder="votre age"
+                 class="bg-[#fafaf9] border border-gray-200 rounded-lg w-full h-[5vh] px-3
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Bouton -->
+        <input type="submit" value="Valider" id="btn-2"
+               class="bg-blue-500 hover:bg-blue-600 w-full h-[5vh] rounded-lg
+                      text-white font-bold cursor-pointer transition duration-200">
+      </div>
+    </form>
+
+    <!-- TABLEAU -->
+    <div class="bg-white mt-6 rounded-xl shadow overflow-x-auto">
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="bg-gray-50">
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">id unique de chaque etudiant</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Nom</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Prénom</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Age</th>
+            <th class="border border-gray-200 px-4 py-3 text-sm text-gray-500">Action</th>
+          </tr>
+        </thead>
+        <tbody id="liste"></tbody>
+      </table>
+    </div>
+
+  </div>
+    
+</body>
+<script type="module" src="index.js"></script>
+</html>

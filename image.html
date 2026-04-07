@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <!-- Étape 1 : choisir une image -->
+  <input type="file" id="monImage" accept="image/*"/>
+
+  <!-- Étape 2 : afficher l'image -->
+  <img id="apercu" style="width:200px; display:none;"/>
+
+  <script>
+    // let input = document.getElementById("monImage");
+    // input.addEventListener("change", function(){
+    //     let fichier = input.files[0];
+
+    //     let redear = new  FileReader();
+
+    //     redear.readAsDataURL(fichier);
+
+    //     redear.onload = function(){
+    //         let contenu = document.getElementById("apercu");
+    //         contenu.src = redear.result
+    //         apercu.style.display = "block";
+    //     }
+    // })
+    let input2 = document.getElementById("monImage");
+
+    input2.addEventListener("change", function(){
+        let image = input2.files[0];
+
+        let redear = new FileReader();
+        redear.readAsDataURL(image);
+
+        redear.onload = function(){
+            let aperecu = document.getElementById("apercu");
+            aperecu.src = redear.result;
+            aperecu.style.display = "block"
+        }
+    })
+
+    // let input = document.getElementById("monImage");
+
+    // input.addEventListener("change", function() {
+
+    //   // Récupérer le fichier choisi
+    //   let fichier = input.files[0];
+
+    //   // Créer le scanner
+    //   let reader = new FileReader();
+
+    //   // Scanner l'image
+    //   reader.readAsDataURL(fichier);
+
+    //   // Quand le scan est terminé
+    //   reader.onload = function() {
+    //     // Afficher l'image dans la page
+    //     let apercu = document.getElementById("apercu");
+    //     apercu.src           = reader.result;
+    //     apercu.style.display = "block";
+    //     console.log("Image prête !");
+    //   };
+
+    // });
+
+    // let input2 = document.getElementById("monImage");
+    // input.addEventListener("change", function(){
+    //    let ficher = input.files[0];
+
+    //    let reader = new FileReader();
+
+    //    reader.readAsDataURL(fichier)
+    //    reader.onload = function(){
+        
+    //    }
+
+
+    //     reader.onload = function(){
+    //         let aprecu = document.getElementById("apercu");
+    //         aprecu.src = reder.result
+    //     }
+    // })
+  </script>
+  
+
+</body>
+</html>
